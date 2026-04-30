@@ -1,0 +1,23 @@
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 19px;
+	color: #1F5E8A;
+
+
+}
+h5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+.footerlink {
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a {
+	color: #957D53;
+	text-decoration: underline;
+}

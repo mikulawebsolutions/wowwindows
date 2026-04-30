@@ -1,0 +1,51 @@
+
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^wowwindowcleaners.com [NC]
+RewriteRule ^(.*)$ https://www.wowwindowcleaners.com/$1 [L,R=301,NC]
+
+<IfModule mod_rewrite.c>
+# Special case for the homepage (when index.htm is used in links)
+RewriteRule ^index\.htm$ / [R=301,L]
+
+</IfModule>
+
+Options -Indexes
+
+# Block access to .htaccess
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+
+# Block access to backup and log files
+<FilesMatch "\.(bak|log|swp|sql|tar|tar.gz)$">
+    order allow,deny
+    deny from all
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    # Content-Security-Policy (CSP)
+    Header set Content-Security-Policy "upgrade-insecure-requests;"
+    
+    # Strict-Transport-Security (HSTS)
+    Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    
+    # X-Content-Type-Options
+    Header set X-Content-Type-Options "nosniff"
+    
+    # X-Frame-Options (prevents iframe embedding)
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Permissions-Policy (formerly Feature-Policy)
+    Header set Permissions-Policy "microphone=(), camera=(), fullscreen=*, payment=self"
+    
+    # Referrer-Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Cross-Origin-Opener-Policy (COOP)
+    Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    
+    # Cross-Origin-Resource-Policy (CORP)
+    Header set Cross-Origin-Resource-Policy "cross-origin"
+</IfModule>
